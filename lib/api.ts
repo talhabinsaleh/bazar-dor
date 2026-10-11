@@ -7,11 +7,11 @@ const BASE_URLS = [
   "https://api.abcz.workers.dev/api/bazardor",
 ];
 
-async function getJSON<T>(path: string): Promise<T> {
+async function getJSON<T>(path: string, fresh = false): Promise<T> {
   let lastError: unknown;
   for (const base of BASE_URLS) {
     try {
-      const res = await fetch(base + path, { next: { revalidate: 300 } });
+      const res = await fetch(base + path, fresh ? { cache: "no-store" } : { next: { revalidate: 300 } });
       if (res.ok) return (await res.json()) as T;
       lastError = new Error(`${res.status} from ${base}${path}`);
     } catch (err) {
@@ -21,9 +21,10 @@ async function getJSON<T>(path: string): Promise<T> {
   throw lastError;
 }
 
-export function getProducts(category?: string) {
+// fresh = skip the cache and always ask the API (used where a loading skeleton is shown)
+export function getProducts(category?: string, fresh = false) {
   const query = category ? `?category=${encodeURIComponent(category)}` : "";
-  return getJSON<Product[]>(`/products${query}`);
+  return getJSON<Product[]>(`/products${query}`, fresh);
 }
 
 export function getCategories() {

@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { signUp } from "@/lib/auth-client";
+import { signOut, signUp } from "@/lib/auth-client";
 import SocialButtons from "@/components/SocialButtons";
 import PasswordInput from "@/components/PasswordInput";
 
@@ -34,15 +34,19 @@ export default function SignUpForm() {
     setError("");
     setLoading(true);
     const { error } = await signUp.email({ name, email, password });
-    setLoading(false);
 
     if (error) {
+      setLoading(false);
       return fail(
-        error.code === "USER_ALREADY_EXISTS" || error.status === 422
+        error.code?.startsWith("USER_ALREADY_EXISTS") || error.status === 422
           ? "এই ইমেইল দিয়ে আগেই অ্যাকাউন্ট খোলা হয়েছে"
           : (error.message ?? "সাইন আপ ব্যর্থ হয়েছে"),
       );
     }
+
+    // BetterAuth signs the new user in; the assignment wants them to log in themselves
+    await signOut();
+    setLoading(false);
 
     toast.success("অ্যাকাউন্ট তৈরি হয়েছে! এবার সাইন ইন করুন");
     router.push("/signin");
