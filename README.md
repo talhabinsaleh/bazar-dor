@@ -28,7 +28,7 @@ Data comes from the Programming Hero Bazardor API (`/products`, `/products?categ
 
 ## ✨ Key Features
 
-1. **Live price ticker:** an endless scrolling strip under the navbar shows every product's price per unit and its ▲/▼ change.
+1. **Live price ticker:** an endless scrolling strip under the navbar shows every product's price per unit and its ▲/▼ change. Click any item to open its details page.
 2. **Top risers and fallers:** the home page picks the 6 products whose prices rose most and the 6 that fell most today, plus a grid of all products.
 3. **Category pages with numeric sorting:** filter by category and sort by price (low → high / high → low). Prices are compared as numbers, so Bengali numerals like `১,৮৫০` sort correctly.
 4. **Protected product details:** after login you see the min, max and average price, comparisons with yesterday, last week and last month, and a market-by-market price table.
