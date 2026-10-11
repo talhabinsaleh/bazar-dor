@@ -19,6 +19,16 @@ export const metadata: Metadata = {
   description:
     "চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার আজকের বাজারদর — বাজারভিত্তিক সর্বনিম্ন, সর্বোচ্চ ও গড় দাম।",
   icons: { icon: "/logo-icon.png" },
+  metadataBase: new URL("https://bazar-dor-talha.vercel.app"),
+  openGraph: {
+    title: "বাজার দর — প্রয়োজনীয় পণ্যের দাম এক নজরে",
+    description: "Bangla market price tracker: today's prices, risers and fallers, and market-by-market rates across Bangladesh.",
+    url: "/",
+    siteName: "বাজার দর (BazarDor)",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "বাজার দর home page" }],
+    type: "website",
+  },
+  twitter: { card: "summary_large_image", images: ["/og-image.png"] },
 };
 
 export default function RootLayout({
