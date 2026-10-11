@@ -5,6 +5,7 @@
 BazarDor is a Bangla market price tracker. It shows today's prices for rice, lentils, oil, vegetables, fish, meat, eggs/milk and spices, which items went up or down since yesterday, and a market-by-market price table from bazars across six divisions of Bangladesh.
 
 🔗 **Live site:** https://bazar-dor-talha.vercel.app
+
 📦 **Repository:** https://github.com/talhabinsaleh/bazar-dor
 
 ---
