@@ -23,13 +23,25 @@ function GitHubIcon() {
   );
 }
 
+// adds ?auth=<value> to a same-site path, keeping any query it already has
+function withAuthFlag(path: string, value: string) {
+  const url = new URL(path, "http://x");
+  url.searchParams.set("auth", value);
+  return url.pathname + url.search;
+}
+
 export default function SocialButtons({ callbackURL = "/" }: { callbackURL?: string }) {
   const [loading, setLoading] = useState<"google" | "github" | null>(null);
 
   async function handleSocial(provider: "google" | "github") {
     setLoading(provider);
     // errors (e.g. same email already used with a password) come back to the sign in page
-    const { error } = await signIn.social({ provider, callbackURL, errorCallbackURL: "/signin" });
+    const { error } = await signIn.social({
+      provider,
+      callbackURL: withAuthFlag(callbackURL, "social"),
+      newUserCallbackURL: withAuthFlag(callbackURL, "social-new"),
+      errorCallbackURL: "/signin",
+    });
     if (error) {
       toast.error(error.message ?? "সোশ্যাল লগইন ব্যর্থ হয়েছে");
       setLoading(null);

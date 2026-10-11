@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Hind_Siliguri } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/Navbar";
 import PriceTicker from "@/components/PriceTicker";
 import Footer from "@/components/Footer";
+import AuthToast from "@/components/AuthToast";
 import "./globals.css";
 
 const hind = Hind_Siliguri({
@@ -31,6 +33,9 @@ export default function RootLayout({
         <PriceTicker />
         <main className="flex-1">{children}</main>
         <Footer />
+        <Suspense fallback={null}>
+          <AuthToast />
+        </Suspense>
         <Toaster position="top-center" toastOptions={{ style: { fontFamily: "var(--font-hind)" } }} />
       </body>
     </html>
