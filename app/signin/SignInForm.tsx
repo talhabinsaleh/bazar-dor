@@ -7,22 +7,34 @@ import toast from "react-hot-toast";
 import { signIn } from "@/lib/auth-client";
 import SocialButtons from "@/components/SocialButtons";
 
+const OAUTH_ERRORS: Record<string, string> = {
+  account_not_linked:
+    "এই ইমেইল দিয়ে আগেই পাসওয়ার্ড ব্যবহার করে অ্যাকাউন্ট খোলা হয়েছে। ইমেইল ও পাসওয়ার্ড দিয়ে সাইন ইন করুন।",
+  access_denied: "সোশ্যাল লগইন বাতিল করা হয়েছে।",
+};
+
 export default function SignInForm({
   redirectTo,
   protectedRedirect,
+  oauthError,
 }: {
   redirectTo: string;
   protectedRedirect: boolean;
+  oauthError?: string;
 }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const oauthMessage = oauthError ? (OAUTH_ERRORS[oauthError] ?? "সোশ্যাল লগইন ব্যর্থ হয়েছে, আবার চেষ্টা করুন।") : "";
+  const [error, setError] = useState(oauthMessage);
 
   useEffect(() => {
     if (protectedRedirect) {
       toast.error("এই পেজটি দেখতে আগে সাইন ইন করুন", { id: "protected" });
     }
-  }, [protectedRedirect]);
+    if (oauthMessage) {
+      toast.error(oauthMessage, { id: "oauth-error", duration: 6000 });
+    }
+  }, [protectedRedirect, oauthMessage]);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

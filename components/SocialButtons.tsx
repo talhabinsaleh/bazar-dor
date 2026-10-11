@@ -28,7 +28,8 @@ export default function SocialButtons({ callbackURL = "/" }: { callbackURL?: str
 
   async function handleSocial(provider: "google" | "github") {
     setLoading(provider);
-    const { error } = await signIn.social({ provider, callbackURL });
+    // errors (e.g. same email already used with a password) come back to the sign in page
+    const { error } = await signIn.social({ provider, callbackURL, errorCallbackURL: "/signin" });
     if (error) {
       toast.error(error.message ?? "সোশ্যাল লগইন ব্যর্থ হয়েছে");
       setLoading(null);
