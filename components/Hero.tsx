@@ -8,7 +8,7 @@ export default function Hero() {
         <span className="inline-block rounded-full bg-secondary px-3 py-1 text-sm font-semibold text-primary">
           {bnToday()}
         </span>
-        <h1 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">আজকের বাজারের দাম এক নজরে</h1>
+        <h1 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl lg:text-[2.6rem]">আজকের বাজারের দাম এক নজরে</h1>
         <p className="mt-4 max-w-xl text-base text-base-content/80 sm:text-lg">
           চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম — বাজারভিত্তিক বিস্তারিত, গড়, সর্বনিম্ন-সর্বাধিক এবং
           দামের পরিবর্তন এক জায়গায়।
