@@ -27,6 +27,9 @@ export const auth = betterAuth({
     accountLinking: {
       enabled: true,
       trustedProviders: ["google", "github"],
+      // Email sign up has no verification step (assignment rule), so allow Google/GitHub
+      // to sign in to an existing account that has the same email
+      requireLocalEmailVerified: false,
     },
   },
   plugins: [nextCookies()],
