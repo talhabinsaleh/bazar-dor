@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { signIn } from "@/lib/auth-client";
 import SocialButtons from "@/components/SocialButtons";
+import PasswordInput from "@/components/PasswordInput";
 
 const OAUTH_ERRORS: Record<string, string> = {
   account_not_linked:
@@ -74,7 +75,7 @@ export default function SignInForm({
         </label>
         <label className="block">
           <span className="mb-1 block text-sm font-semibold">পাসওয়ার্ড</span>
-          <input name="password" type="password" autoComplete="current-password" placeholder="আপনার পাসওয়ার্ড" className="input w-full" />
+          <PasswordInput name="password" placeholder="আপনার পাসওয়ার্ড" />
         </label>
         {error && <p className="text-sm text-error">{error}</p>}
         <button type="submit" disabled={loading} className="btn btn-primary w-full font-semibold">

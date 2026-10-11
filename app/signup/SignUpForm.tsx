@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { signUp } from "@/lib/auth-client";
 import SocialButtons from "@/components/SocialButtons";
+import PasswordInput from "@/components/PasswordInput";
 
 export default function SignUpForm() {
   const router = useRouter();
@@ -60,11 +61,11 @@ export default function SignUpForm() {
         </label>
         <label className="block">
           <span className="mb-1 block text-sm font-semibold">পাসওয়ার্ড</span>
-          <input name="password" type="password" autoComplete="new-password" placeholder="কমপক্ষে ৬ অক্ষর" className="input w-full" />
+          <PasswordInput name="password" placeholder="কমপক্ষে ৬ অক্ষর" />
         </label>
         <label className="block">
           <span className="mb-1 block text-sm font-semibold">পাসওয়ার্ড নিশ্চিত করুন</span>
-          <input name="confirm" type="password" autoComplete="new-password" placeholder="আবার লিখুন" className="input w-full" />
+          <PasswordInput name="confirm" placeholder="আবার লিখুন" />
         </label>
         {error && <p className="text-sm text-error">{error}</p>}
         <button type="submit" disabled={loading} className="btn btn-primary w-full font-semibold">
