@@ -39,11 +39,11 @@ export default function SocialButtons({ callbackURL = "/" }: { callbackURL?: str
     <>
       <div className="divider my-5 text-sm text-base-content/60">অথবা</div>
       <div className="grid gap-3 sm:grid-cols-2">
-        <button type="button" onClick={() => handleSocial("google")} disabled={!!loading} className="btn btn-outline border-line font-semibold">
+        <button type="button" onClick={() => handleSocial("google")} disabled={!!loading} className="btn btn-outline border-line px-2 text-sm font-semibold whitespace-nowrap">
           {loading === "google" ? <span className="loading loading-spinner loading-sm" /> : <GoogleIcon />}
           Google দিয়ে চালিয়ে যান
         </button>
-        <button type="button" onClick={() => handleSocial("github")} disabled={!!loading} className="btn btn-outline border-line font-semibold">
+        <button type="button" onClick={() => handleSocial("github")} disabled={!!loading} className="btn btn-outline border-line px-2 text-sm font-semibold whitespace-nowrap">
           {loading === "github" ? <span className="loading loading-spinner loading-sm" /> : <GitHubIcon />}
           GitHub দিয়ে চালিয়ে যান
         </button>
