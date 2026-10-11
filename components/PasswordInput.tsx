@@ -3,9 +3,18 @@
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 
-export default function PasswordInput({ name, placeholder }: { name: string; placeholder: string }) {
+export default function PasswordInput({
+  name,
+  placeholder,
+  autoComplete = "new-password",
+}: {
+  name: string;
+  placeholder: string;
+  autoComplete?: "current-password" | "new-password";
+}) {
   const [visible, setVisible] = useState(false);
-  // read-only until focused so the browser can't auto-fill a saved password
+  // read-only until focused: the browser won't fill it on page load,
+  // but its saved-login popup still works once the user clicks in
   const [locked, setLocked] = useState(true);
 
   return (
@@ -13,7 +22,7 @@ export default function PasswordInput({ name, placeholder }: { name: string; pla
       <input
         name={name}
         type={visible ? "text" : "password"}
-        autoComplete="new-password"
+        autoComplete={autoComplete}
         readOnly={locked}
         onFocus={() => setLocked(false)}
         placeholder={placeholder}

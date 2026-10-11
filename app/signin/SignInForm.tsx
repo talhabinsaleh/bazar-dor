@@ -71,11 +71,11 @@ export default function SignInForm({
       <form onSubmit={handleSubmit} className="space-y-4" noValidate>
         <label className="block">
           <span className="mb-1 block text-sm font-semibold">ইমেইল</span>
-          <input name="email" type="email" autoComplete="email" placeholder="you@example.com" className="input w-full" />
+          <input name="email" type="email" autoComplete="username" placeholder="you@example.com" className="input w-full" />
         </label>
         <label className="block">
           <span className="mb-1 block text-sm font-semibold">পাসওয়ার্ড</span>
-          <PasswordInput name="password" placeholder="আপনার পাসওয়ার্ড" />
+          <PasswordInput name="password" placeholder="আপনার পাসওয়ার্ড" autoComplete="current-password" />
         </label>
         {error && <p className="text-sm text-error">{error}</p>}
         <button type="submit" disabled={loading} className="btn btn-primary w-full font-semibold">
