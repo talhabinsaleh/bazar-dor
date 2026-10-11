@@ -10,6 +10,7 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     minPasswordLength: 6,
+    autoSignIn: false, // after sign up the user goes to the sign in page
   },
   socialProviders: {
     google: {
